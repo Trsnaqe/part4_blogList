@@ -3,13 +3,16 @@ const app=express()
 const cors = require('cors')
 const blogRouter = require('./controllers/blogs')
 const userRouter = require('./controllers/users')
+const loginRouter=require('./controllers/login')
+const middleware = require('./utils/middleware')
 const mongoose = require('mongoose')
 const config = require('./utils/config')
 mongoose.connect(config.MANGODB_URI)
 app.use(cors())
 app.use(express.json())
-app.use('/api/blogs', blogRouter)
+app.use(middleware.tokenExtractor)
+app.use('/api/login',loginRouter)
 app.use('/api/users',userRouter)
+app.use('/api/blogs', blogRouter)
 
-
-module.exports = app
+module.exports = app            

@@ -24,6 +24,7 @@ const newUser= new schema({
     password:passwordHash
 })
 const savedUser=await newUser.save()
+
 response.status(201).json(savedUser)
 })
 
@@ -36,7 +37,7 @@ usersRouter.get('/',async(request,response)=>{
 })
 usersRouter.get('/:id',async (request,response)=>{
   const id = request.params.id
-  const users=await schema.findById(id).populate('blogs',{name:1,username:1})
+  const users=await schema.findById(id).populate('blogs',{title:1,author:1})
   response.json(users)
   
   })

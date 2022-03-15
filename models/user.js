@@ -2,8 +2,8 @@ const mongoose=require('mongoose')
 
 const userSchema=new mongoose.Schema({
 name:String,
-username:{type:String,required:true,minlength:5},
-password:{type:String,required:true,minlength:5},
+username:{type:String,required:true},
+password:{type:String,required:true},
 blogs:[{
     type:mongoose.Types.ObjectId,
     ref:'Blog'
